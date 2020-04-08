@@ -1,5 +1,5 @@
 # 技术栈
-vue2 + vue-router + vuex + axios + sass （vue-cli4.0搭建的）
+vue2 + vue-router + vuex + axios + sass （vue-cli4搭建的）
 # 启动
 ```
 # npm install （安装依赖）
