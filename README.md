@@ -26,9 +26,9 @@ vue2 + vue-router + vuex + axios + sass （vue-cli4搭建的）
 	  在xxx.vue页面使用，需要包一层template, 如
 ```
 <Modal>
-	<template v-slot:body>
-		<p>添加成功！</p>
-	</template>
+  <template v-slot:body>
+    <p>添加成功！</p>
+  </template>
 </Modal>
 ```
 
