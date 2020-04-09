@@ -22,14 +22,14 @@ vue2 + vue-router + vuex + axios + sass （vue-cli4搭建的）
 
 	- 配置文件修改了，需要重启服务器才能生效（如：修改了vue.config.js的配置）
 
-- vue-cli4.0项目中，组件的插槽<slot name='body'></slot>,
+- vue-cli4.0项目中，组件的插槽< slot name='body' >< /slot >,
 	  在xxx.vue页面使用，需要包一层template, 如
 ```
-		<Modal>
-			<template v-slot:body>
-				<p>添加成功！</p>
-			</template>
-		</Modal>
+<Modal>
+	<template v-slot:body>
+		<p>添加成功！</p>
+	</template>
+</Modal>
 ```
 
 - this.$store.dispatch('saveUserName',res.username) 这句等同下面3条语句
@@ -38,8 +38,11 @@ vue2 + vue-router + vuex + axios + sass （vue-cli4搭建的）
 	      3. this.saveUserName(res.username)  【正常使用该方法，传递参数】
 
 - 获取动态路由后面的参数： （如获取参数32， http://localhost:8080/#/product/32）
-	  const id = this.$route.params.myid    【注意：动态路由params参数是自己定义的名字，为myid】
-	  【注： this.$router.push('/login') 是路由跳转，注意区分】
+```
+  const id = this.$route.params.myid    
+  【注：动态路由params参数是自己定义的名字，为myid】
+  【注： this.$router.push('/login') 是路由跳转，注意区分】
+```
 
 - cookie中的userid应该做成token（进行加密后的凭证来传输）
 
@@ -86,12 +89,13 @@ axios.get( 'url',{ 参数名：值 } ).then(function (response) {}).catch(functi
 
 - 打开新窗口的方式：
 		JS代码控制： window.open('url','_blank')，
-		html标签控制： <a href='url' target="_blank"></a>
+		html标签控制： < a href='url' target="_blank" >< /a >
 
 - CSS属性：
-	// 该属性挺好用，设置border-box后，不用管padding对原来设置的width影响，padding值都算在width内了
-		 box-sizing: border-box;
-		 
+```
+	 // 该属性挺好用，设置border-box后，不用管padding对原来设置的width影响，padding值都算在width内了
+	 box-sizing: border-box;
+```
 - <img>标签的src可以存放.svg的矢量图
 ```
 <img src='/imgs/loading-bars.svg' alt='一个svg图片'/> 
@@ -104,8 +108,8 @@ axios.get( 'url',{ 参数名：值 } ).then(function (response) {}).catch(functi
   	* src/assets/scss/mixin.scss ：一般放置css函数，即抽取出来复用高的css属性，如span设置图标、flex布局都可以抽离出来，使用函数替代
   	* src/assets/scss/base.scss ：抽取的一些公共样式，即多处相同类名设置相同的css属性，需要抽离出来，提高代码复用
 
-  * src/components： 一般放页面组件   ———— 命名方式用大头驼峰命名：如 NavHeader.vue
-  * src/views： 放页面（需要单独配置路由的页面） ———— 命名方式用小写：如 index.vue、 home.vue
+  * src/components： 一般放页面组件，命名方式用大头驼峰命名：如 NavHeader.vue
+  * src/views： 放页面（需要单独配置路由的页面），命名方式用小写：如 index.vue、 home.vue
 
   * src/router/index.js： 路由的配置
   * src/store/index.js： vuex状态管理
@@ -121,10 +125,12 @@ axios.get( 'url',{ 参数名：值 } ).then(function (response) {}).catch(functi
 * main.js：
 	* 全局配置，这里配置router、store、Vue, 一些各个.vue页面通用的插件放入Vue.use(VueCookie)中
 	* 使用图片懒加载插件，加载内容时，显示loading指向的.svg矢量图(可根据自己需要改变)
-		import VueLazyLoad from 'vue-lazyload'
-		Vue.use(VueLazyLoad, {
-	  		loading: '/imgs/loading-svg/loading-bars.svg'
-		})
+	```
+	import VueLazyLoad from 'vue-lazyload'
+	Vue.use(VueLazyLoad, {
+  		loading: '/imgs/loading-svg/loading-bars.svg'
+	})
+	```
 
 * APP.vue：（别忘记了，单页面App.vue要设置个< router-view >标签）
 ```
@@ -135,10 +141,10 @@ axios.get( 'url',{ 参数名：值 } ).then(function (response) {}).catch(functi
 ```
 
 * views中：
-	- detail.vue、 index.vue、 product.vue 将放入home.vue的<router-view>中（为什么这么写，因为detail、index、product三个页面都包含相同的头部导航和底部导航，所以另起一个home.vue来存放相同部分，不同部分单独替换<router-view>，这样复用性更高）
+	- detail.vue、 index.vue、 product.vue 将放入home.vue的< router-view >中（为什么这么写，因为detail、index、product三个页面都包含相同的头部导航和底部导航，所以另起一个home.vue来存放相同部分，不同部分单独替换< router-view >，这样复用性更高）
 	【注意】这里其实可以就写成detail.vue、 index.vue、 product.vue三个页面，配置对应单独的路由，不过相比上面的写法，需要每个页面中单独各引一次头部导航和底部导航，代码复用性差点，效果却一样。
 
-	- orderConfirm.vue、 orderList.vue、 orderPay.vue、 alipay.vue 将放入order.vue的<router-view>中，复用了相同的头部导航和底部栏。
+	- orderConfirm.vue、 orderList.vue、 orderPay.vue、 alipay.vue 将放入order.vue的< router-view >中，复用了相同的头部导航和底部栏。
 
 * router/index.js：
 ```
